@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Happy Birthday, Mama! 🎂✨</title>
+    <meta name="description" content="A special multi-page interactive birthday experience dedicated to Mama.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Background Canvas for Particles, Stars, Confetti, Fireworks -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Floating Background Light Orbs -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Page Progress Bar Indicator -->
+    <div class="page-progress-bar" id="page-progress-bar">
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text" id="progress-text">Page 1 of 8</div>
+    </div>
+
+    <!-- MULTI-PAGE CONTAINER -->
+    <main class="pages-wrapper" id="pages-wrapper">
+
+        <!-- ===================================================================
+             PAGE 1: CINEMATIC OPENING
+             =================================================================== -->
+        <article class="page active-page" id="page-1" data-page="1">
+            <div class="hero-content text-center">
+                <div class="subtitle-badge">✨ A Special Day ✨</div>
+                <h1 class="opening-title" id="opening-text-1">Today is a very special day…</h1>
+                <p class="opening-subtitle" id="opening-text-2">Someone very special is celebrating another year of life.</p>
+                <div class="opening-action">
+                    <button class="btn btn-primary btn-glow pulse-btn btn-next-page" data-target="2">
+                        <span class="btn-icon">🎁</span>
+                        <span class="btn-text">OPEN YOUR SURPRISE</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 2: GRAND BIRTHDAY REVEAL
+             =================================================================== -->
+        <article class="page" id="page-2" data-page="2">
+            <div class="reveal-content text-center">
+                <div class="sparkle-decorator">✨ 🌟 ✨</div>
+                <h1 class="main-birthday-title shimmer-text float-anim">HAPPY BIRTHDAY, MAMA! 🎂</h1>
+                <p class="reveal-subtitle">Today is all about celebrating you.</p>
+
+                <!-- Floating CSS Balloons Container -->
+                <div class="balloons-container" aria-hidden="true">
+                    <div class="balloon balloon-1"><span class="string"></span></div>
+                    <div class="balloon balloon-2"><span class="string"></span></div>
+                    <div class="balloon balloon-3"><span class="string"></span></div>
+                    <div class="balloon balloon-4"><span class="string"></span></div>
+                    <div class="balloon balloon-5"><span class="string"></span></div>
+                </div>
+
+                <div class="page-action-wrapper">
+                    <button class="btn btn-primary btn-glow btn-next-page" data-target="3">
+                        <span>Read Your Message 💌</span>
+                        <span class="arrow-right">→</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 3: REVAMPED LUXURY 3D ENVELOPE & LETTER
+             =================================================================== -->
+        <article class="page" id="page-3" data-page="3">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">PERSONAL NOTE</span>
+                    <h2 class="section-title">A Little Message For You 💌</h2>
+                </div>
+
+                <div class="luxury-envelope-container" id="luxury-envelope-container">
+                    
+                    <!-- 3D Realistic Envelope -->
+                    <div class="envelope-3d-box" id="envelope-3d-box">
+                        
+                        <!-- Back Base of Envelope -->
+                        <svg class="envelope-svg-back" viewBox="0 0 420 280" fill="none">
+                            <defs>
+                                <linearGradient id="env-bg-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#1e294b"/>
+                                    <stop offset="100%" stop-color="#0f172a"/>
+                                </linearGradient>
+                                <linearGradient id="env-gold-stroke" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#ffe082"/>
+                                    <stop offset="50%" stop-color="#d4af37"/>
+                                    <stop offset="100%" stop-color="#9a7b1c"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="10" y="10" width="400" height="260" rx="16" fill="url(#env-bg-grad)" stroke="url(#env-gold-stroke)" stroke-width="2.5"/>
+                            <path d="M 10 270 L 210 140 L 410 270 Z" fill="#090d1a" opacity="0.6"/>
+                        </svg>
+
+                        <!-- Inner Letter Card (Slides up smoothly out of envelope) -->
+                        <div class="inner-letter-card" id="inner-letter-card">
+                            <div class="letter-inner-border">
+                                <div class="letter-header">
+                                    <span class="letter-stamp">✨</span>
+                                    <span class="letter-date">For Mama</span>
+                                </div>
+                                <div class="letter-body" id="typed-message-container">
+                                    <!-- Typewriter message injects here -->
+                                </div>
+                                <div class="letter-footer">
+                                    <p class="sender-tag">— With lots of love & respect ❤️</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Front Flaps of Envelope (Left, Right, Bottom Pocket) -->
+                        <svg class="envelope-svg-front" viewBox="0 0 420 280" fill="none">
+                            <!-- Side Flaps -->
+                            <path d="M 10 10 L 210 145 L 10 270 Z" fill="#15203d" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+                            <path d="M 410 10 L 210 145 L 410 270 Z" fill="#1c284b" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+                            <!-- Bottom Main Pocket Flap -->
+                            <path d="M 10 270 L 210 135 L 410 270 Z" fill="#24335c" stroke="url(#env-gold-stroke)" stroke-width="2"/>
+                        </svg>
+
+                        <!-- Top Flap (Animated 3D Flip) -->
+                        <div class="envelope-top-flap" id="envelope-top-flap">
+                            <svg viewBox="0 0 420 150" fill="none">
+                                <path d="M 10 10 L 210 140 L 410 10 Z" fill="#2a3c6c" stroke="url(#env-gold-stroke)" stroke-width="2.5"/>
+                            </svg>
+                        </div>
+
+                        <!-- Luxury Golden Wax Seal Stamp -->
+                        <div class="wax-seal-btn" id="wax-seal-btn" role="button" tabindex="0">
+                            <div class="wax-seal-outer">
+                                <span class="wax-seal-heart">❤️</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="envelope-prompt-box" id="envelope-prompt-box">
+                        <p class="waiting-text">Tap the wax seal to open your message…</p>
+                        <button id="btn-open-message" class="btn btn-primary pulse-btn">
+                            <span class="btn-icon">💌</span>
+                            <span class="btn-text">OPEN MESSAGE</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="page-action-wrapper text-center hidden" id="page-3-next-wrapper">
+                    <button class="btn btn-primary btn-glow btn-next-page" data-target="4">
+                        <span>What Makes You Special 🌟</span>
+                        <span class="arrow-right">→</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 4: WHAT MAKES YOU SPECIAL
+             =================================================================== -->
+        <article class="page" id="page-4" data-page="4">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">WHY YOU ARE LOVED</span>
+                    <h2 class="section-title">What Makes You Special 🌟</h2>
+                    <p class="section-subtitle">A few of the endless qualities that make you so deeply appreciated.</p>
+                </div>
+
+                <div class="special-cards-grid">
+                    
+                    <!-- Card 1: Caring -->
+                    <div class="special-card glass-card tilt-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="card-icon-wrap">
+                            <svg class="card-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">❤️ Caring</h3>
+                        <p class="card-desc">Your kindness makes people around you feel comfortable, valued, and loved.</p>
+                    </div>
+
+                    <!-- Card 2: Supportive -->
+                    <div class="special-card glass-card tilt-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="card-icon-wrap">
+                            <svg class="card-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">🤝 Supportive</h3>
+                        <p class="card-desc">You are always there with a guiding hand and steady encouragement when it matters most.</p>
+                    </div>
+
+                    <!-- Card 3: Funny -->
+                    <div class="special-card glass-card tilt-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="card-icon-wrap">
+                            <svg class="card-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">😂 Funny</h3>
+                        <p class="card-desc">Your quick wit and joyous spirit bring light and laughter into every single gathering.</p>
+                    </div>
+
+                    <!-- Card 4: Inspiring -->
+                    <div class="special-card glass-card tilt-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="card-icon-wrap">
+                            <svg class="card-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">🌟 Inspiring</h3>
+                        <p class="card-desc">The way you live life with wisdom, strength, and grace inspires everyone around you.</p>
+                    </div>
+
+                    <!-- Card 5: Family's Special One -->
+                    <div class="special-card glass-card tilt-card card-span-full" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="card-icon-wrap">
+                            <svg class="card-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z"></path>
+                                <path d="M19 19H5a1 1 0 0 1-1-1v-1h16v1a1 1 0 0 1-1 1z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">👑 Family's Special One</h3>
+                        <p class="card-desc">You hold a unique and cherished place in our hearts—the heartbeat of our family's best memories.</p>
+                    </div>
+
+                </div>
+
+                <div class="page-action-wrapper text-center">
+                    <button class="btn btn-primary btn-glow btn-next-page" data-target="5">
+                        <span>Make a Birthday Wish 🕯️</span>
+                        <span class="arrow-right">→</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 5: REVAMPED DELUXE 3D BIRTHDAY CAKE & CANDLES
+             =================================================================== -->
+        <article class="page" id="page-5" data-page="5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">CELEBRATION TIME</span>
+                    <h2 class="section-title">Make a Wish, Mama! 🕯️</h2>
+                    <p class="section-subtitle" id="cake-instruction">Tap the candles and make your birthday wish…</p>
+                </div>
+
+                <div class="cake-interactive-area">
+                    <!-- Wish Granted Banner (Hidden initially) -->
+                    <div class="wish-granted-banner hidden" id="wish-granted-banner">
+                        <span class="banner-sparkle">✨ 🎆 ✨</span>
+                        <h3 class="wish-granted-title">WISH GRANTED! ✨</h3>
+                        <p class="wish-granted-text">May all your heartfelt dreams and hopes come true this year!</p>
+                        <div class="banner-actions">
+                            <button id="btn-relight-candles" class="btn btn-outline btn-sm">
+                                <span>🕯️ Re-light Candles</span>
+                            </button>
+                            <button class="btn btn-primary btn-sm btn-next-page" data-target="6">
+                                <span>Read Family Wishes ❤️ →</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DELUXE 3D VECTOR SVG CAKE -->
+                    <div class="deluxe-cake-container float-anim" id="cake-container">
+                        <svg class="cake-3d-svg" viewBox="0 0 500 420" fill="none">
+                            <defs>
+                                <!-- Metallic Stand Gradients -->
+                                <linearGradient id="stand-grad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#475569"/>
+                                    <stop offset="25%" stop-color="#94a3b8"/>
+                                    <stop offset="50%" stop-color="#ffffff"/>
+                                    <stop offset="75%" stop-color="#cbd5e1"/>
+                                    <stop offset="100%" stop-color="#334155"/>
+                                </linearGradient>
+                                <!-- Cake Tiers Gradients -->
+                                <linearGradient id="tier-bottom-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#581c87"/>
+                                    <stop offset="50%" stop-color="#3b0764"/>
+                                    <stop offset="100%" stop-color="#1e0136"/>
+                                </linearGradient>
+                                <linearGradient id="tier-middle-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#9a3412"/>
+                                    <stop offset="50%" stop-color="#c2410c"/>
+                                    <stop offset="100%" stop-color="#7c2d12"/>
+                                </linearGradient>
+                                <linearGradient id="tier-top-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#fff7ed"/>
+                                    <stop offset="50%" stop-color="#ffedd5"/>
+                                    <stop offset="100%" stop-color="#fed7aa"/>
+                                </linearGradient>
+                                <!-- Cream Drips Gradient -->
+                                <linearGradient id="cream-drip-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#ffffff"/>
+                                    <stop offset="100%" stop-color="#fef3c7"/>
+                                </linearGradient>
+                                <linearGradient id="gold-accent-grad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#ffe082"/>
+                                    <stop offset="50%" stop-color="#d4af37"/>
+                                    <stop offset="100%" stop-color="#9a7b1c"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Shadow under Stand -->
+                            <ellipse cx="250" cy="392" rx="210" ry="18" fill="rgba(0,0,0,0.55)"/>
+
+                            <!-- Metallic Stand Base & Pedestal -->
+                            <path d="M 180 365 L 320 365 L 295 388 L 205 388 Z" fill="url(#stand-grad)"/>
+                            <rect x="235" y="335" width="30" height="32" fill="url(#stand-grad)"/>
+                            <ellipse cx="250" cy="340" rx="195" ry="18" fill="url(#stand-grad)"/>
+
+                            <!-- Tier 1 (Bottom Velvet Tier with Gold Lace & Pearls) -->
+                            <path d="M 85 255 C 85 230 415 230 415 255 L 415 330 C 415 355 85 355 85 330 Z" fill="url(#tier-bottom-grad)"/>
+                            <ellipse cx="250" cy="255" rx="165" ry="22" fill="#2e1065" stroke="url(#gold-accent-grad)" stroke-width="2.5"/>
+                            <!-- Pearls on Bottom Tier -->
+                            <circle cx="115" cy="330" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="155" cy="338" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="200" cy="342" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="250" cy="343" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="300" cy="342" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="345" cy="338" r="5.5" fill="url(#gold-accent-grad)"/>
+                            <circle cx="385" cy="330" r="5.5" fill="url(#gold-accent-grad)"/>
+
+                            <!-- Tier 2 (Middle Tier - Golden Honey Glaze with Cream Drips) -->
+                            <path d="M 120 175 C 120 155 380 155 380 175 L 380 250 C 380 270 120 270 120 250 Z" fill="url(#tier-middle-grad)"/>
+                            <ellipse cx="250" cy="175" rx="130" ry="18" fill="#ea580c" stroke="url(#gold-accent-grad)" stroke-width="2"/>
+                            <!-- Cream Drips -->
+                            <path d="M 120 175 C 135 205 150 175 165 215 C 180 175 195 220 210 175 C 225 225 240 175 255 210 C 270 175 285 215 300 175 C 315 220 330 175 345 205 C 360 175 380 175 380 175 C 380 175 380 162 250 162 C 120 162 120 175 120 175 Z" fill="url(#cream-drip-grad)"/>
+
+                            <!-- Tier 3 (Top Tier - Ivory Vanilla Frosting) -->
+                            <path d="M 155 105 C 155 90 345 90 345 105 L 345 170 C 345 185 155 185 155 170 Z" fill="url(#tier-top-grad)"/>
+                            <ellipse cx="250" cy="105" rx="95" ry="15" fill="#ffffff" stroke="url(#gold-accent-grad)" stroke-width="2.5"/>
+                            
+                            <!-- Strawberry / Gold Cherries Toppings -->
+                            <circle cx="185" cy="102" r="8" fill="#e11d48"/>
+                            <circle cx="218" cy="98" r="9" fill="url(#gold-accent-grad)"/>
+                            <circle cx="250" cy="96" r="10" fill="#e11d48"/>
+                            <circle cx="282" cy="98" r="9" fill="url(#gold-accent-grad)"/>
+                            <circle cx="315" cy="102" r="8" fill="#e11d48"/>
+                        </svg>
+
+                        <!-- 3 REALISTIC 3D CANDLES WITH DANCING FLAMES -->
+                        <div class="candles-layer-3d">
+                            
+                            <!-- Candle 1 -->
+                            <div class="deluxe-candle candle-1" data-candle="1" role="button" tabindex="0" aria-label="Blow candle 1">
+                                <div class="flame-group">
+                                    <div class="flame-halo"></div>
+                                    <div class="flame-body"></div>
+                                    <div class="flame-core"></div>
+                                </div>
+                                <div class="smoke-plume"></div>
+                                <div class="candle-stick-3d"></div>
+                            </div>
+
+                            <!-- Candle 2 (Center) -->
+                            <div class="deluxe-candle candle-2" data-candle="2" role="button" tabindex="0" aria-label="Blow candle 2">
+                                <div class="flame-group">
+                                    <div class="flame-halo"></div>
+                                    <div class="flame-body"></div>
+                                    <div class="flame-core"></div>
+                                </div>
+                                <div class="smoke-plume"></div>
+                                <div class="candle-stick-3d"></div>
+                            </div>
+
+                            <!-- Candle 3 -->
+                            <div class="deluxe-candle candle-3" data-candle="3" role="button" tabindex="0" aria-label="Blow candle 3">
+                                <div class="flame-group">
+                                    <div class="flame-halo"></div>
+                                    <div class="flame-body"></div>
+                                    <div class="flame-core"></div>
+                                </div>
+                                <div class="smoke-plume"></div>
+                                <div class="candle-stick-3d"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="page-action-wrapper text-center" id="page-5-skip-wrapper">
+                    <button class="btn btn-outline btn-next-page" data-target="6">
+                        <span>Skip to Family Wishes →</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 6: FAMILY WISHES
+             =================================================================== -->
+        <article class="page" id="page-6" data-page="6">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">BLESSINGS & HAPPINESS</span>
+                    <h2 class="section-title">A Few Wishes For You ❤️</h2>
+                    <p class="section-subtitle">Sent with warmth, love, and gratitude.</p>
+                </div>
+
+                <div class="wishes-grid">
+                    <div class="wish-card glass-card">
+                        <div class="wish-number">01</div>
+                        <div class="wish-icon">☀️</div>
+                        <p class="wish-text">“May your days always be filled with happiness, warmth, and boundless sunshine.”</p>
+                    </div>
+
+                    <div class="wish-card glass-card">
+                        <div class="wish-number">02</div>
+                        <div class="wish-icon">😊</div>
+                        <p class="wish-text">“May you always have reasons to smile and feel proud of everything you do.”</p>
+                    </div>
+
+                    <div class="wish-card glass-card">
+                        <div class="wish-number">03</div>
+                        <div class="wish-icon">🌿</div>
+                        <p class="wish-text">“May you stay healthy, peaceful, and surrounded by people who love and respect you.”</p>
+                    </div>
+
+                    <div class="wish-card glass-card">
+                        <div class="wish-number">04</div>
+                        <div class="wish-icon">🥂</div>
+                        <p class="wish-text">“May this year bring you many beautiful memories and exciting new milestones.”</p>
+                    </div>
+                </div>
+
+                <div class="page-action-wrapper text-center">
+                    <button class="btn btn-primary btn-glow btn-next-page" data-target="7">
+                        <span>One Final Surprise 👀</span>
+                        <span class="arrow-right">→</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 7: HIDDEN SURPRISE & GIFT BOX
+             =================================================================== -->
+        <article class="page" id="page-7" data-page="7">
+            <div class="container text-center">
+                <div class="surprise-teaser">
+                    <span class="teaser-emoji float-anim">Wait… 👀</span>
+                    <h2 class="section-title">I think there's still one more surprise…</h2>
+                </div>
+
+                <div class="gift-box-wrapper">
+                    <div class="gift-box float-anim" id="gift-box">
+                        <div class="gift-lid" id="gift-lid">
+                            <div class="gift-bow">
+                                <div class="bow-left"></div>
+                                <div class="bow-right"></div>
+                                <div class="bow-center"></div>
+                            </div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon-vertical"></div>
+                            <div class="gift-ribbon-horizontal"></div>
+                        </div>
+                        <div class="gift-glow-effect"></div>
+                    </div>
+
+                    <div class="surprise-action">
+                        <button id="btn-open-final-surprise" class="btn btn-primary btn-glow btn-lg pulse-btn">
+                            <span class="btn-icon">🎁</span>
+                            <span class="btn-text">OPEN THE FINAL SURPRISE</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===================================================================
+             PAGE 8: GRAND FINALE CELEBRATION
+             =================================================================== -->
+        <article class="page" id="page-8" data-page="8">
+            <div class="container text-center">
+                <div class="final-badge">🎉 GRAND FINALE 🎉</div>
+                <h1 class="final-title shimmer-text float-anim">HAPPY BIRTHDAY, MAMA! 🎉</h1>
+                <p class="final-subheading">Wishing you happiness, peace, good health, laughter, and countless beautiful moments.</p>
+                
+                <div class="final-quote-box glass-card glow-border">
+                    <p class="final-quote">“May this year be your happiest one yet.” ❤️</p>
+                </div>
+
+                <div class="final-actions">
+                    <button id="btn-celebrate-again" class="btn btn-primary btn-glow btn-lg pulse-btn">
+                        <span class="btn-icon">🎂</span>
+                        <span class="btn-text">Celebrate Again</span>
+                    </button>
+                    <button class="btn btn-outline btn-lg btn-next-page" data-target="1">
+                        <span class="btn-icon">↺</span>
+                        <span class="btn-text">Start From Beginning</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container text-center">
+            <p class="footer-text">Made with ❤️ for Mama's Special Day</p>
+        </div>
+    </footer>
+
+    <!-- JS Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
